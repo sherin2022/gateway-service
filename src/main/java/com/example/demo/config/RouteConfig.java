@@ -10,14 +10,19 @@ public class RouteConfig {
     public RouteLocator gatewayRoutes(RouteLocatorBuilder routeLocatorBuilder) {
 
         return routeLocatorBuilder.routes()
-                .route("user-service", rt -> rt.path("/users/**")
-                        .uri("http://localhost:3005/"))
-                .route("post-service", rt -> rt.path("/post/**")
-                        .uri("http://localhost:3010/"))
-                .route("comment-service", rt -> rt.path("/comment/**")
-                        .uri("http://localhost:3015/"))
-                .route("like-service", rt -> rt.path("/comment/**")
-                        .uri("http://localhost:3020/"))
+                .route("authentication-authorization-service", rt -> rt.path("/api/v1/auth/login")
+                        .uri("http://host.docker.internal:3000/"))
+                .route("authentication-authorization-service", rt -> rt.path("/api/v1/auth/signup")
+                        .uri("http://host.docker.internal:3000/"))
+                .route("user-service", rt -> rt.path("/api/v1/users/**")
+                        .uri("http://host.docker.internal:3005/"))
+                .route("post-service", rt -> rt.path("/api/v1/posts/**")
+                        .uri("http://host.docker.internal:3010/"))
+                .route("comment-service", rt -> rt.path("/api/v1/posts/*/comments/**")
+                        .uri("http://host.docker.internal:3015/"))
+                .route("like-service", rt -> rt.path("/api/v1/postsOrComments/**")
+                        .uri("http://host.docker.internal:3020/"))
+
                 .build();
     }
 }
