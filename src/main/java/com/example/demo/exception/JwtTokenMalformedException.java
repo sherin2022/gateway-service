@@ -9,6 +9,4 @@ public class JwtTokenMalformedException extends AuthenticationException {
     public JwtTokenMalformedException(String msg) {
         super(msg);
     }
-
-
 }
